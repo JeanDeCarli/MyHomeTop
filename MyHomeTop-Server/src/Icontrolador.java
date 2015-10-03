@@ -7,4 +7,6 @@ public interface Icontrolador extends Remote{
     public void setSensores(List<Sensor> sensores)throws RemoteException;
     public List<Atuador> getAtuadores()throws RemoteException;
     public void setAtuadores(List<Atuador> atuadores)throws RemoteException;
+    public void addSensor()throws RemoteException;
+    public void addControlador()throws RemoteException;
 }

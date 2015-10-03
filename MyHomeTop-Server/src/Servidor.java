@@ -13,9 +13,11 @@ public class Servidor {
             System.out.println("Iniciando...");
             Isensor sensor = new Sensor();
             Iatuador atuador = new Atuador();
+            Icontrolador controlador = new Controlador();
             LocateRegistry.createRegistry(1099);
             Naming.rebind("Atuador", atuador);
             Naming.rebind("Sensor", sensor);
+            Naming.rebind("controlador", controlador);
         } catch (RemoteException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
