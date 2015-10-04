@@ -1,3 +1,5 @@
+package RMI;
+
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -12,32 +14,34 @@ public class Controlador extends UnicastRemoteObject implements Icontrolador{
     }
 
     @Override
-    public List<Sensor> getSensores() {
+    public List<Sensor> getSensores()  throws RemoteException{
         return sensores;
     }
 
     @Override
-    public void setSensores(List<Sensor> sensores) {
+    public void setSensores(List<Sensor> sensores)  throws RemoteException{
         this.sensores = sensores;
     }
 
     @Override
-    public List<Atuador> getAtuadores() {
+    public List<Atuador> getAtuadores()  throws RemoteException{
         return atuadores;
     }
 
     @Override
-    public void setAtuadores(List<Atuador> atuadores) {
+    public void setAtuadores(List<Atuador> atuadores)  throws RemoteException{
         this.atuadores = atuadores;
     }
     
     @Override
-    public void addSensor(){
-        
+    public void addSensor(Sensor s) throws RemoteException{
+        this.sensores.add(s);
+        System.out.println(this.sensores.size());
     }
     
     @Override
-    public void addControlador(){
-        
+    public void addAtuador(Atuador a) throws RemoteException{
+        this.atuadores.add(a);
+        System.out.println(this.atuadores.size());
     }
 }
