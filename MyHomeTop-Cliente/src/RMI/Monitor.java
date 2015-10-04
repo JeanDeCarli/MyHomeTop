@@ -3,10 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package RMI;
 
-import Interfaces.Icontrolador;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,8 +88,17 @@ public class Monitor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             Icontrolador control = (Icontrolador) Naming.lookup("rmi://localhost:1099/controlador");
+            Iatuador atuador = (Iatuador) Naming.lookup("rmi://localhost:1099/atuador");
+            Isensor sensor = (Isensor) Naming.lookup("rmi://localhost:1099/sensor");
             
-        } catch (Exception e) {
+            control.addAtuador(atuador);
+            control.addSensor(sensor);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
