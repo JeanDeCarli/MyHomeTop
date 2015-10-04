@@ -10,6 +10,10 @@ public class Sensor extends UnicastRemoteObject implements Isensor {
     private final Controlador control = new Controlador();
 
 
+    public Sensor(String name) throws RemoteException{
+        this.name = name;
+    }
+
     public Sensor() throws RemoteException{
     }
 
@@ -34,7 +38,7 @@ public class Sensor extends UnicastRemoteObject implements Isensor {
     }
     
     @Override
-    public void addSensor() throws RemoteException{
-        this.control.addSensor();
+    public void addSensor(String name) throws RemoteException{
+        this.control.addSensor(name);
     }
 }

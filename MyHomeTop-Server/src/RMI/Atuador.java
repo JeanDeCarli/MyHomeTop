@@ -11,6 +11,10 @@ public class Atuador  extends UnicastRemoteObject implements Iatuador {
     private boolean on;
     private final Controlador control = new Controlador();
 
+    public Atuador(String name) throws RemoteException{
+        this.name = name;
+    }
+
     public Atuador() throws RemoteException{
     }
 
@@ -45,8 +49,8 @@ public class Atuador  extends UnicastRemoteObject implements Iatuador {
     }
     
     @Override
-    public void addAtuador() throws RemoteException{
-        this.control.addAtuador();
+    public void addAtuador(String name) throws RemoteException{
+        this.control.addAtuador(name);
     }
     
 }

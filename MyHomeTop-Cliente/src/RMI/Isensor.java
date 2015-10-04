@@ -9,5 +9,5 @@ public interface Isensor extends Remote{
     public void setVal(int val) throws RemoteException;
     public String getName() throws RemoteException;
     public void setName(String name) throws RemoteException;
-    public void addSensor() throws RemoteException;
+    public void addSensor(String name) throws RemoteException;
 }
