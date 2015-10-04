@@ -7,23 +7,34 @@ import java.rmi.server.UnicastRemoteObject;
 public class Sensor extends UnicastRemoteObject implements Isensor {
     private String name;
     private int val;
+    private final Controlador control = new Controlador();
+
 
     public Sensor() throws RemoteException{
     }
 
-    public int getVal() {
+    @Override
+    public int getVal() throws RemoteException{
         return val;
     }
 
-    public void setVal(int val) {
+    @Override
+    public void setVal(int val) throws RemoteException{
         this.val = val;
     }
 
-    public String getName() {
+    @Override
+    public String getName() throws RemoteException{
         return name;
     }
 
-    public void setName(String name) {
+    @Override
+    public void setName(String name) throws RemoteException{
         this.name = name;
+    }
+    
+    @Override
+    public void addSensor() throws RemoteException{
+        this.control.addSensor();
     }
 }

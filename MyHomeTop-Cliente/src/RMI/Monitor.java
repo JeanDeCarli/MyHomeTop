@@ -87,12 +87,14 @@ public class Monitor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Icontrolador control = (Icontrolador) Naming.lookup("rmi://localhost:1099/controlador");
             Iatuador atuador = (Iatuador) Naming.lookup("rmi://localhost:1099/atuador");
             Isensor sensor = (Isensor) Naming.lookup("rmi://localhost:1099/sensor");
             
-            control.addAtuador(atuador);
-            control.addSensor(sensor);
+            atuador.addAtuador();
+            sensor.addSensor();
+            
+            Sensor telaSensor = new Sensor();
+            telaSensor.setVisible(true);
         } catch (NotBoundException ex) {
             Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
