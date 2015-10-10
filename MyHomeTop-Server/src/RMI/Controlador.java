@@ -27,13 +27,13 @@ public class Controlador{
         this.atuadores = atuadores;
     }
     
-    public void addSensor(String name) throws RemoteException {
-        this.sensores.add(new Sensor(name));
-        System.out.println("Sensor: " + this.sensores.get(sensores.size()-1).getName());
+    public void addSensor(String name, String comodo) throws RemoteException {
+        this.sensores.add(new Sensor(name, comodo));
+        System.out.println("Sensor: " + this.sensores.get(sensores.size()-1).getName() + " - " + this.sensores.get(sensores.size()-1).getComodo());
     }
     
-    public void addAtuador(String name) throws RemoteException {
-        this.atuadores.add(new Atuador(name));
-        System.out.println("Atuador: " + this.atuadores.get(atuadores.size()-1).getName());
+    public void addAtuador(String name, String comodo) throws RemoteException {
+        this.atuadores.add(new Atuador(name, comodo));
+        System.out.println("Atuador: " + this.atuadores.get(atuadores.size()-1).getName() + " - " + this.atuadores.get(atuadores.size()-1).getComodo());
     }
 }

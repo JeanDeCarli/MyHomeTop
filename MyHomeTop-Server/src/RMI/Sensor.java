@@ -6,15 +6,27 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class Sensor extends UnicastRemoteObject implements Isensor {
     private String name;
+    private String comodo;
     private int val;
     private final Controlador control = new Controlador();
 
 
-    public Sensor(String name) throws RemoteException{
+    public Sensor(String name, String comodo) throws RemoteException{
         this.name = name;
+        this.comodo = comodo;
     }
 
     public Sensor() throws RemoteException{
+    }
+
+    @Override
+    public String getComodo() throws RemoteException{
+        return comodo;
+    }
+
+    @Override
+    public void setComodo(String comodo) throws RemoteException{
+        this.comodo = comodo;
     }
 
     @Override
@@ -38,7 +50,7 @@ public class Sensor extends UnicastRemoteObject implements Isensor {
     }
     
     @Override
-    public void addSensor(String name) throws RemoteException{
-        this.control.addSensor(name);
+    public void addSensor(String name, String comodo) throws RemoteException{
+        this.control.addSensor(name, comodo);
     }
 }

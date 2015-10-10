@@ -41,7 +41,6 @@ public class Monitor extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        Painel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monitor");
@@ -54,28 +53,13 @@ public class Monitor extends javax.swing.JFrame {
             }
         });
 
-        Painel.setBorder(javax.swing.BorderFactory.createTitledBorder("Monitoramento"));
-
-        javax.swing.GroupLayout PainelLayout = new javax.swing.GroupLayout(Painel);
-        Painel.setLayout(PainelLayout);
-        PainelLayout.setHorizontalGroup(
-            PainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        PainelLayout.setVerticalGroup(
-            PainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 185, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Painel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -83,35 +67,15 @@ public class Monitor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Painel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            Iatuador atuador = (Iatuador) Naming.lookup("rmi://localhost:1099/atuador");
-            Isensor sensor = (Isensor) Naming.lookup("rmi://localhost:1099/sensor");
-            
-            String name = JOptionPane.showInputDialog("Digite o nome do Sensor/Atuador: ");
-            
-            atuador.addAtuador(name);
-            sensor.addSensor(name);
-            
-            Sensor telaSensor = new Sensor();
-            telaSensor.setVisible(true);
-            telaSensor.setTitle(name);
-            
-        } catch (NotBoundException ex) {
-            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
-            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        NewSensor ns = new NewSensor();
+        ns.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -150,7 +114,6 @@ public class Monitor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Painel;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

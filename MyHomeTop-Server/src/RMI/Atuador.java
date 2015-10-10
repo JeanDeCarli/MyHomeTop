@@ -7,15 +7,27 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class Atuador  extends UnicastRemoteObject implements Iatuador {
     private String name;
+    private String comodo;
     private int val;
     private boolean on;
     private final Controlador control = new Controlador();
 
-    public Atuador(String name) throws RemoteException{
+    public Atuador(String name, String comodo) throws RemoteException{
         this.name = name;
+        this.comodo = comodo;
     }
 
     public Atuador() throws RemoteException{
+    }
+
+    @Override
+    public String getComodo() throws RemoteException{
+        return comodo;
+    }
+
+    @Override
+    public void setComodo(String comodo) throws RemoteException{
+        this.comodo = comodo;
     }
 
     @Override
@@ -49,8 +61,8 @@ public class Atuador  extends UnicastRemoteObject implements Iatuador {
     }
     
     @Override
-    public void addAtuador(String name) throws RemoteException{
-        this.control.addAtuador(name);
+    public void addAtuador(String name, String comodo) throws RemoteException{
+        this.control.addAtuador(name, comodo);
     }
     
 }
