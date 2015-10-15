@@ -11,5 +11,4 @@ public interface Isensor extends Remote{
     public void setName(String name) throws RemoteException;
     public void setComodo(String comodo) throws RemoteException;
     public String getComodo() throws RemoteException;
-    public void addSensor(String name, String comodo) throws RemoteException;
 }

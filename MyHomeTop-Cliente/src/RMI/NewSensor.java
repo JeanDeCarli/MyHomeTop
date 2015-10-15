@@ -165,14 +165,12 @@ public class NewSensor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
     public void add(String nameParam, String comodoParam) {
         try {
-            Iatuador atuador = (Iatuador) Naming.lookup("rmi://localhost:1099/atuador");
-            Isensor sensor = (Isensor) Naming.lookup("rmi://localhost:1099/sensor");
+            Icontrolador controlador = (Icontrolador) Naming.lookup("rmi://localhost:1099/controlador");
 
-            // enviar por parametro o comodo nas chamadas dos metodos abaixo
-            atuador.addAtuador(nameParam, comodoParam);
-            sensor.addSensor(nameParam, comodoParam);
+            controlador.addAtuador(nameParam, comodoParam);
+            controlador.addSensor(nameParam, comodoParam);
 
-            Sensor telaSensor = new Sensor();
+            TelaSensor telaSensor = new TelaSensor();
             telaSensor.setVisible(true);
             telaSensor.setTitle(nameParam + " - " + comodoParam);
 
