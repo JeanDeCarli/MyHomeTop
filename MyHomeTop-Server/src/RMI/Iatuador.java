@@ -13,5 +13,4 @@ public interface Iatuador extends Remote{
     public void setVal(int val) throws RemoteException;
     public boolean isOn() throws RemoteException;
     public void setOn(boolean on) throws RemoteException;
-    public void addAtuador(String name, String comodo) throws RemoteException;
 }

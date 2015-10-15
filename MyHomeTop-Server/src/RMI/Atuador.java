@@ -59,10 +59,4 @@ public class Atuador  extends UnicastRemoteObject implements Iatuador {
     public void setOn(boolean on) throws RemoteException{
         this.on = on;
     }
-    
-    @Override
-    public void addAtuador(String name, String comodo) throws RemoteException{
-        this.control.addAtuador(name, comodo);
-    }
-    
 }

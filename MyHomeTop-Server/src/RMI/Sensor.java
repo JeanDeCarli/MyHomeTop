@@ -48,9 +48,4 @@ public class Sensor extends UnicastRemoteObject implements Isensor {
     public void setName(String name) throws RemoteException{
         this.name = name;
     }
-    
-    @Override
-    public void addSensor(String name, String comodo) throws RemoteException{
-        this.control.addSensor(name, comodo);
-    }
 }
