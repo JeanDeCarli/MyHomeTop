@@ -191,11 +191,11 @@ public class Monitor extends javax.swing.JFrame {
                     case "Sala": {
                         JCheckBox check = new JCheckBox("Ativo");
                         JTextField text = new JTextField();
-                        text.setText (String.valueOf(atuadores.get(i).getVal()));
-                        
+                        text.setText(String.valueOf(atuadores.get(i).getVal()));
+                        check.setSelected(atuadores.get(i).isOn());
+
                         JPainelSala.add(new JLabel(atuadores.get(i).getName()));
                         JPainelSala.add(text);
-                        check.setSelected(atuadores.get(i).isOn());
                         JPainelSala.add(check);
                         JPainelSala.add(new JButton("Atualizar"));
 
@@ -208,52 +208,52 @@ public class Monitor extends javax.swing.JFrame {
                     case "Cozinha": {
                         JCheckBox check = new JCheckBox("Ativo");
                         JTextField text = new JTextField();
-                        text.setText (String.valueOf(atuadores.get(i).getVal()));
+                        text.setText(String.valueOf(atuadores.get(i).getVal()));
+                        check.setSelected(atuadores.get(i).isOn());
                         
                         JPainelCozinha.add(new JLabel(atuadores.get(i).getName()));
                         JPainelCozinha.add(text);
-                        check.setSelected(atuadores.get(i).isOn());
                         JPainelCozinha.add(check);
                         JPainelCozinha.add(new JButton("Atualizar"));
 
                         JPainelCozinha.revalidate();
                         JPainelCozinha.repaint();
                         pack();
-                        
+
                         break;
                     }
                     case "Quarto 1": {
                         JCheckBox check = new JCheckBox("Ativo");
                         JTextField text = new JTextField();
-                        text.setText (String.valueOf(atuadores.get(i).getVal()));
-                        
+                        text.setText(String.valueOf(atuadores.get(i).getVal()));
+                        check.setSelected(atuadores.get(i).isOn());
+
                         JPainelQ1.add(new JLabel(atuadores.get(i).getName()));
                         JPainelQ1.add(text);
-                        check.setSelected(atuadores.get(i).isOn());
                         JPainelQ1.add(check);
                         JPainelQ1.add(new JButton("Atualizar"));
 
                         JPainelQ1.revalidate();
                         JPainelQ1.repaint();
                         pack();
-                        
+
                         break;
                     }
                     case "Quarto 2": {
                         JCheckBox check = new JCheckBox("Ativo");
                         JTextField text = new JTextField();
-                        text.setText (String.valueOf(atuadores.get(i).getVal()));
-                        
+                        text.setText(String.valueOf(atuadores.get(i).getVal()));
+                        check.setSelected(atuadores.get(i).isOn());
+
                         JPainelQ2.add(new JLabel(atuadores.get(i).getName()));
                         JPainelQ2.add(text);
-                        check.setSelected(atuadores.get(i).isOn());
                         JPainelQ2.add(check);
                         JPainelQ2.add(new JButton("Atualizar"));
 
                         JPainelQ2.revalidate();
                         JPainelQ2.repaint();
                         pack();
-                        
+
                         break;
                     }
                     default:
