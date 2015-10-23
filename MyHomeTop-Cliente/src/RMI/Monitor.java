@@ -5,6 +5,7 @@
  */
 package RMI;
 
+import java.awt.BorderLayout;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -12,6 +13,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -166,7 +168,7 @@ public class Monitor extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         try {
             Icontrolador controlador = (Icontrolador) Naming.lookup("rmi://localhost:1099/controlador");
-
+            
             this.sensores = (List<Isensor>) controlador.getSensores();
             this.atuadores = (List<Iatuador>) controlador.getAtuadores();
 
@@ -174,12 +176,10 @@ public class Monitor extends javax.swing.JFrame {
                 switch (atuadores.get(i).getComodo()) {
                     case "Sala": {
                         JLabel name = new JLabel(atuadores.get(i).getName());
-                        JPainelSala.add(name);
-                        name.setVisible(true);
+                        JPainelSala.setLayout(new BorderLayout());
+                        JPainelSala.add(name, BorderLayout.CENTER);
                         JPainelSala.revalidate();
-                        JPainelSala.repaint();
-                        super.revalidate();
-                        super.repaint();
+                      
                         break;
                     }
                     case "Cozinha": {
