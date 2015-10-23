@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Controlador extends UnicastRemoteObject implements Icontrolador{
     private final List<Sensor> sensores = new ArrayList<>();
@@ -14,11 +15,13 @@ public class Controlador extends UnicastRemoteObject implements Icontrolador{
 
     @Override
     public List<Sensor> getSensores() throws RemoteException {
+        JOptionPane.showMessageDialog(null, "server - sensor -- " + this.sensores);
         return sensores;
     }
 
     @Override
     public List<Atuador> getAtuadores() throws RemoteException {
+        JOptionPane.showMessageDialog(null, "server - atuador -- " + this.atuadores);
         return atuadores;
     }
 
