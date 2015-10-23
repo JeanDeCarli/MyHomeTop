@@ -45,6 +45,9 @@ public class NewSensor extends javax.swing.JFrame {
         rbQuarto2 = new javax.swing.JRadioButton();
         btnOk = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        cbAtivo = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        txtValor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,6 +81,10 @@ public class NewSensor extends javax.swing.JFrame {
             }
         });
 
+        cbAtivo.setText("Ativo");
+
+        jLabel3.setText("Valor Inicial: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,11 +93,17 @@ public class NewSensor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbCozinha)
+                            .addComponent(rbQuarto2)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(50, 50, 50)
                         .addComponent(txfName))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -98,13 +111,13 @@ public class NewSensor extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCancel))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(cbAtivo))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rbQuarto1)
                                     .addComponent(rbSala))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbCozinha)
-                                    .addComponent(rbQuarto2))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -115,21 +128,28 @@ public class NewSensor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rbSala)
-                        .addComponent(rbCozinha)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbQuarto1)
-                    .addComponent(rbQuarto2))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel3)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAtivo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(rbSala))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbQuarto1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rbCozinha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbQuarto2)))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel)
                     .addComponent(btnOk))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -138,22 +158,24 @@ public class NewSensor extends javax.swing.JFrame {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         String comodo = null;
         String name = this.txfName.getText();
-
+        int val = Integer.parseInt(this.txtValor.getText());
+        boolean on = this.cbAtivo.isSelected();
+        
         if (this.txfName.getText().isEmpty()) {
             this.requireFields();
         } else {
             if (this.rbCozinha.isSelected()) {
                 comodo = this.rbCozinha.getText();
-                this.add(name, comodo);
+                this.add(name, comodo, val, on);
             } else if (this.rbQuarto1.isSelected()) {
                 comodo = this.rbQuarto1.getText();
-                this.add(name, comodo);
+                this.add(name, comodo, val, on);
             } else if (this.rbQuarto2.isSelected()) {
                 comodo = this.rbQuarto2.getText();
-                this.add(name, comodo);
+                this.add(name, comodo, val, on);
             } else if (this.rbSala.isSelected()) {
                 comodo = this.rbSala.getText();
-                this.add(name, comodo);
+                this.add(name, comodo, val, on);
             } else {
                 this.requireFields();
             }
@@ -163,12 +185,12 @@ public class NewSensor extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
-    public void add(String nameParam, String comodoParam) {
+    public void add(String nameParam, String comodoParam, int valParam, boolean onParam) {
         try {
             Icontrolador controlador = (Icontrolador) Naming.lookup("rmi://localhost:1099/controlador");
 
-            controlador.addAtuador(nameParam, comodoParam);
-            controlador.addSensor(nameParam, comodoParam);
+            controlador.addAtuador(nameParam, comodoParam, valParam, onParam);
+            controlador.addSensor(nameParam, comodoParam, valParam);
 
             TelaSensor telaSensor = new TelaSensor();
             telaSensor.setVisible(true);
@@ -228,12 +250,15 @@ public class NewSensor extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOk;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox cbAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JRadioButton rbCozinha;
     private javax.swing.JRadioButton rbQuarto1;
     private javax.swing.JRadioButton rbQuarto2;
     private javax.swing.JRadioButton rbSala;
     private javax.swing.JTextField txfName;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

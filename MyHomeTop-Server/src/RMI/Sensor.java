@@ -11,9 +11,10 @@ public class Sensor extends UnicastRemoteObject implements Isensor {
     private final Controlador control = new Controlador();
 
 
-    public Sensor(String name, String comodo) throws RemoteException{
+    public Sensor(String name, String comodo, int val) throws RemoteException{
         this.name = name;
         this.comodo = comodo;
+        this.val = val;
     }
 
     public Sensor() throws RemoteException{

@@ -6,6 +6,8 @@
 package RMI;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -13,10 +15,16 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -29,6 +37,8 @@ public class Monitor extends javax.swing.JFrame {
 
     public Monitor() {
         initComponents();
+
+        this.configurePainels();
     }
 
     /**
@@ -45,7 +55,7 @@ public class Monitor extends javax.swing.JFrame {
         JPainelCozinha = new javax.swing.JPanel();
         JPainelSala = new javax.swing.JPanel();
         JPainelQ1 = new javax.swing.JPanel();
-        JPainalQ2 = new javax.swing.JPanel();
+        JPainelQ2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monitor");
@@ -104,16 +114,16 @@ public class Monitor extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        JPainalQ2.setBorder(javax.swing.BorderFactory.createTitledBorder("Quarto 2"));
+        JPainelQ2.setBorder(javax.swing.BorderFactory.createTitledBorder("Quarto 2"));
 
-        javax.swing.GroupLayout JPainalQ2Layout = new javax.swing.GroupLayout(JPainalQ2);
-        JPainalQ2.setLayout(JPainalQ2Layout);
-        JPainalQ2Layout.setHorizontalGroup(
-            JPainalQ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout JPainelQ2Layout = new javax.swing.GroupLayout(JPainelQ2);
+        JPainelQ2.setLayout(JPainelQ2Layout);
+        JPainelQ2Layout.setHorizontalGroup(
+            JPainelQ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 288, Short.MAX_VALUE)
         );
-        JPainalQ2Layout.setVerticalGroup(
-            JPainalQ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        JPainelQ2Layout.setVerticalGroup(
+            JPainelQ2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 277, Short.MAX_VALUE)
         );
 
@@ -134,7 +144,7 @@ public class Monitor extends javax.swing.JFrame {
                             .addComponent(JPainelQ1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(JPainalQ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JPainelQ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JPainelCozinha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -153,7 +163,7 @@ public class Monitor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JPainelQ1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JPainalQ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JPainelQ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -168,27 +178,82 @@ public class Monitor extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         try {
             Icontrolador controlador = (Icontrolador) Naming.lookup("rmi://localhost:1099/controlador");
-            
+
             this.sensores = (List<Isensor>) controlador.getSensores();
             this.atuadores = (List<Iatuador>) controlador.getAtuadores();
 
+            JPainelSala.removeAll();
+            JPainelCozinha.removeAll();
+            JPainelQ1.removeAll();
+            JPainelQ2.removeAll();
             for (int i = 0; i < atuadores.size(); i++) {
                 switch (atuadores.get(i).getComodo()) {
                     case "Sala": {
-                        JLabel name = new JLabel(atuadores.get(i).getName());
-                        JPainelSala.setLayout(new BorderLayout());
-                        JPainelSala.add(name, BorderLayout.CENTER);
+                        JCheckBox check = new JCheckBox("Ativo");
+                        JTextField text = new JTextField();
+                        text.setText (String.valueOf(atuadores.get(i).getVal()));
+                        
+                        JPainelSala.add(new JLabel(atuadores.get(i).getName()));
+                        JPainelSala.add(text);
+                        check.setSelected(atuadores.get(i).isOn());
+                        JPainelSala.add(check);
+                        JPainelSala.add(new JButton("Atualizar"));
+
                         JPainelSala.revalidate();
-                      
+                        JPainelSala.repaint();
+                        pack();
+
                         break;
                     }
                     case "Cozinha": {
+                        JCheckBox check = new JCheckBox("Ativo");
+                        JTextField text = new JTextField();
+                        text.setText (String.valueOf(atuadores.get(i).getVal()));
+                        
+                        JPainelCozinha.add(new JLabel(atuadores.get(i).getName()));
+                        JPainelCozinha.add(text);
+                        check.setSelected(atuadores.get(i).isOn());
+                        JPainelCozinha.add(check);
+                        JPainelCozinha.add(new JButton("Atualizar"));
+
+                        JPainelCozinha.revalidate();
+                        JPainelCozinha.repaint();
+                        pack();
+                        
                         break;
                     }
                     case "Quarto 1": {
+                        JCheckBox check = new JCheckBox("Ativo");
+                        JTextField text = new JTextField();
+                        text.setText (String.valueOf(atuadores.get(i).getVal()));
+                        
+                        JPainelQ1.add(new JLabel(atuadores.get(i).getName()));
+                        JPainelQ1.add(text);
+                        check.setSelected(atuadores.get(i).isOn());
+                        JPainelQ1.add(check);
+                        JPainelQ1.add(new JButton("Atualizar"));
+
+                        JPainelQ1.revalidate();
+                        JPainelQ1.repaint();
+                        pack();
+                        
                         break;
                     }
                     case "Quarto 2": {
+                        JCheckBox check = new JCheckBox("Ativo");
+                        JTextField text = new JTextField();
+                        text.setText (String.valueOf(atuadores.get(i).getVal()));
+                        
+                        JPainelQ2.add(new JLabel(atuadores.get(i).getName()));
+                        JPainelQ2.add(text);
+                        check.setSelected(atuadores.get(i).isOn());
+                        JPainelQ2.add(check);
+                        JPainelQ2.add(new JButton("Atualizar"));
+
+                        JPainelQ2.revalidate();
+                        JPainelQ2.repaint();
+                        pack();
+                        
                         break;
                     }
                     default:
@@ -207,6 +272,19 @@ public class Monitor extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
+    private void configurePainels() {
+        JPainelSala.setLayout(new GridLayout(0, 4));
+        JPainelSala.setPreferredSize(new Dimension(300, 302));
+
+        JPainelCozinha.setLayout(new GridLayout(0, 4));
+        JPainelCozinha.setPreferredSize(new Dimension(300, 302));
+
+        JPainelQ1.setLayout(new GridLayout(0, 4));
+        JPainelQ1.setPreferredSize(new Dimension(300, 302));
+
+        JPainelQ2.setLayout(new GridLayout(0, 4));
+        JPainelQ2.setPreferredSize(new Dimension(300, 302));
+    }
 
     /**
      * @param args the command line arguments
@@ -244,9 +322,9 @@ public class Monitor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JPainalQ2;
     private javax.swing.JPanel JPainelCozinha;
     private javax.swing.JPanel JPainelQ1;
+    private javax.swing.JPanel JPainelQ2;
     private javax.swing.JPanel JPainelSala;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton jButton1;

@@ -12,9 +12,11 @@ public class Atuador  extends UnicastRemoteObject implements Iatuador {
     private boolean on;
     private final Controlador control = new Controlador();
 
-    public Atuador(String name, String comodo) throws RemoteException{
+    public Atuador(String name, String comodo, int val, boolean on) throws RemoteException{
         this.name = name;
         this.comodo = comodo;
+        this.val = val;
+        this.on = on;
     }
 
     public Atuador() throws RemoteException{

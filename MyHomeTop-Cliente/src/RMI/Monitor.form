@@ -40,7 +40,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="JPainalQ2" max="32767" attributes="0"/>
+                          <Component id="JPainelQ2" max="32767" attributes="0"/>
                           <Component id="JPainelCozinha" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -66,7 +66,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="JPainelQ1" max="32767" attributes="0"/>
-                  <Component id="JPainalQ2" min="-2" max="-2" attributes="0"/>
+                  <Component id="JPainelQ2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -156,7 +156,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JPanel" name="JPainalQ2">
+    <Container class="javax.swing.JPanel" name="JPainelQ2">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
