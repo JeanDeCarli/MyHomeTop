@@ -43,10 +43,11 @@ public class Controlador extends UnicastRemoteObject implements Icontrolador{
     }
     
     @Override
-    public void atualizaAtuador(String name, String comodo, int val) throws RemoteException {
+    public void atualizaAtuador(String name, String comodo, int val, boolean ativo) throws RemoteException {
         for (Atuador atuadore : this.atuadores) {
             if (atuadore.getName().equalsIgnoreCase(name) && atuadore.getComodo().equalsIgnoreCase(comodo)) {
                 atuadore.setVal(val);
+                atuadore.setOn(ativo);
             }
         }
     }

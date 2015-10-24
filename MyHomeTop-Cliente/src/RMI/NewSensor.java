@@ -192,7 +192,7 @@ public class NewSensor extends javax.swing.JFrame {
             controlador.addAtuador(nameParam, comodoParam, valParam, onParam);
             controlador.addSensor(nameParam, comodoParam, valParam);
 
-            TelaSensor telaSensor = new TelaSensor();
+            TelaSensor telaSensor = new TelaSensor(Integer.parseInt(txtValor.getText()), cbAtivo.isSelected());
             telaSensor.setVisible(true);
             telaSensor.setTitle(nameParam + " - " + comodoParam);
 

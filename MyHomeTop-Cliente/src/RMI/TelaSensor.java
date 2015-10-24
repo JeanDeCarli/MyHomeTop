@@ -22,8 +22,13 @@ public class TelaSensor extends javax.swing.JFrame {
     /**
      * Creates new form Sensor
      */
-    public TelaSensor() {
+    public TelaSensor(){
+        
+    }
+    public TelaSensor(int Val, boolean ativo) {
         initComponents();
+        cbAtivo.setSelected(ativo);
+        txtVal.setText(String.valueOf(Val));
     }
 
     /**
@@ -38,6 +43,7 @@ public class TelaSensor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtVal = new javax.swing.JTextField();
         btnAtualizar = new javax.swing.JButton();
+        cbAtivo = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -55,6 +61,8 @@ public class TelaSensor extends javax.swing.JFrame {
             }
         });
 
+        cbAtivo.setText("Ativo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,8 +71,10 @@ public class TelaSensor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtVal, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addComponent(txtVal, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(cbAtivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAtualizar)
                 .addContainerGap())
         );
@@ -75,7 +85,8 @@ public class TelaSensor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtVal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtualizar))
+                    .addComponent(btnAtualizar)
+                    .addComponent(cbAtivo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -99,7 +110,7 @@ public class TelaSensor extends javax.swing.JFrame {
                 int val = Integer.parseInt(txtVal.getText());
 
                 controlador.atualizaSensor(title[0], title[1], val);
-                controlador.atualizaAtuador(title[0], title[1], val);
+                controlador.atualizaAtuador(title[0], title[1], val, cbAtivo.isSelected());
                 
                 txtVal.setText("");
             }
@@ -151,6 +162,7 @@ public class TelaSensor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
+    private javax.swing.JCheckBox cbAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtVal;
     // End of variables declaration//GEN-END:variables
