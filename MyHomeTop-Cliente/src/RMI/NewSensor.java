@@ -44,7 +44,6 @@ public class NewSensor extends javax.swing.JFrame {
         rbQuarto1 = new javax.swing.JRadioButton();
         rbQuarto2 = new javax.swing.JRadioButton();
         btnOk = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         cbAtivo = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
@@ -74,13 +73,6 @@ public class NewSensor extends javax.swing.JFrame {
             }
         });
 
-        btnCancel.setText("Cancelar");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
         cbAtivo.setText("Ativo");
 
         jLabel3.setText("Valor Inicial: ");
@@ -107,10 +99,6 @@ public class NewSensor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnOk)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCancel))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, Short.MAX_VALUE)
                                 .addComponent(cbAtivo))
@@ -118,7 +106,10 @@ public class NewSensor extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rbQuarto1)
                                     .addComponent(rbSala))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnOk)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -146,9 +137,7 @@ public class NewSensor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbQuarto2)))
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel)
-                    .addComponent(btnOk))
+                .addComponent(btnOk)
                 .addContainerGap())
         );
 
@@ -181,10 +170,6 @@ public class NewSensor extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnOkActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
     public void add(String nameParam, String comodoParam, int valParam, boolean onParam) {
         try {
             Icontrolador controlador = (Icontrolador) Naming.lookup("rmi://localhost:1099/controlador");
@@ -196,14 +181,12 @@ public class NewSensor extends javax.swing.JFrame {
             telaSensor.setVisible(true);
             telaSensor.setTitle(nameParam + " - " + comodoParam);
 
-            this.dispose();
-
         } catch (NotBoundException ex) {
-            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewSensor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewSensor.class.getName()).log(Level.SEVERE, null, ex);
         } catch (RemoteException ex) {
-            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewSensor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -247,7 +230,6 @@ public class NewSensor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOk;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox cbAtivo;
