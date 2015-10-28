@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 public class Controlador extends UnicastRemoteObject implements Icontrolador{
     private final List<Sensor> sensores = new ArrayList<>();
     private final List<Atuador> atuadores = new ArrayList<>();
+    private final String user = "admin";
+    private final String pass = "admin";
 
     public Controlador() throws RemoteException {
     }
@@ -49,6 +51,15 @@ public class Controlador extends UnicastRemoteObject implements Icontrolador{
                 atuadore.setVal(val);
                 atuadore.setOn(ativo);
             }
+        }
+    }
+    
+    @Override
+    public boolean login(String user, String pass) throws RemoteException{
+        if ((this.user.equals(user)) && (this.pass.equals(pass))) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
